@@ -1,0 +1,67 @@
+<zk>
+	<window title="Calculadora ZK MVVM" border="normal" width="800px" 
+                apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('es.uvigo.mei.ejemplozk.CalculadoraViewModel')"
+		validationMessages="@id('vmsgs')">
+		<vbox>
+			<hbox>
+				Operando 1:
+				<textbox value="@bind(vm.operando1)"
+					constraint="no empty" />
+			</hbox>
+			<hbox>
+				Operando 2:
+				<textbox value="@bind(vm.operando2)"
+					constraint="no empty" />
+			</hbox>
+			<hbox>
+				Resultado:
+				<label value="@load(vm.resultado)" />
+			</hbox>
+		</vbox>
+
+		<separator height="10px" />
+
+		<hbox>
+			<button label="Sumar" onClick="@command('sumar')" />
+			<button label="Restar" onClick="@command('restar')" />
+			<button label="Multiplicar" onClick="@command('multiplicar')" />
+			<button label="Dividir" onClick="@command('dividir')" />
+		</hbox>
+
+		<separator height="10px" />
+
+		Historial de operaciones
+
+		<listbox model="@bind(vm.operaciones)"
+			emptyMessage="No hay operaciones que mostrar">
+			<listhead>
+				<listheader label="Id" />
+				<listheader label="Tipo" />
+				<listheader label="Operando 1" />
+				<listheader label="Operando 2" />
+				<listheader label="Resultado" />
+				<listheader />
+			</listhead>
+			<template name="model" var="operacion">
+				<listitem>
+					<listcell> <label value="@bind(operacion.id)"/> </listcell>
+					<listcell> <label value="@bind(operacion.tipo)"/> </listcell>
+					<listcell> <label value="@bind(operacion.operando1)"/> </listcell>
+					<listcell> <label value="@bind(operacion.operando2)"/> </listcell>
+					<listcell> <label value="@bind(operacion.resultado)"/> </listcell>
+					<listcell>
+						<button label="Eliminar"
+							onClick="@command('eliminar', operacionEliminar=operacion)" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+
+		<separator height="10px" />
+		
+		<button label="Eliminar Todas"
+			onClick="@command('eliminarTodas')" />
+	</window>
+</zk>
+
