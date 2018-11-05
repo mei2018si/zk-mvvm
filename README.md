@@ -362,3 +362,5 @@ Disponible en github: [https://github.com/mei2018si/zk-mvvm](https://github.com/
 git clone https://github.com/mei2018si/zk-mvvm.git
 ```
 
+Puede importase en Eclipse (ver [zk-en-eclipse](https://github.com/mei2018si/documentos-si/blob/master/zk-en-eclipse.md))
+
